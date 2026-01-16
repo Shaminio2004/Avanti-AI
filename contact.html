@@ -282,6 +282,55 @@
             </p>
         </div>
     </section>
+
+<!-- Contact Form -->
+<section class="py-20">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="bg-gray-900 rounded-2xl p-8 border border-gray-800 reveal">
+      <h2 class="text-3xl font-bold mb-2">Send a Message</h2>
+      <p class="text-gray-400 mb-8">We typically reply within 24 hours.</p>
+
+      <form action="https://formsubmit.co/paoloskid@gmail.com" method="POST" class="space-y-6">
+        <!-- FormSubmit settings -->
+        <input type="hidden" name="_subject" value="New message from Avanti AI (Contact Page)" />
+        <input type="hidden" name="_captcha" value="true" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="https://www.avantiai.io/thanks.html" />
+
+        <div>
+          <label class="block text-sm font-medium mb-2">Full Name *</label>
+          <input type="text" name="name" required class="form-input" placeholder="Your name" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-2">Email *</label>
+          <input type="email" name="email" required class="form-input" placeholder="you@company.com" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-2">What do you need? *</label>
+          <select name="topic" required class="form-input">
+            <option value="">Select one</option>
+            <option value="AI Agent Creation">AI Agent Creation</option>
+            <option value="Web Design">Web Design</option>
+            <option value="Automation">Automation</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-2">Message *</label>
+          <textarea name="message" rows="5" required class="form-input"
+            placeholder="Tell us what you want to build, your timeline, and any links."></textarea>
+        </div>
+
+        <button type="submit" class="w-full btn-primary py-3 rounded-lg font-medium text-white">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
     
     <!-- Contact Information -->
     <section class="py-20">
