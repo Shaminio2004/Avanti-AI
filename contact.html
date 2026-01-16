@@ -486,6 +486,66 @@
       Book Appointment
     </button>
   </form>
+
+    <script>
+(function () {
+  const form = document.getElementById("booking-form");
+  const btn = document.getElementById("book-appointment-btn");
+
+  const dateInput = document.getElementById("preferredDate");
+  const timeSelect = document.getElementById("preferredTime");
+  const summaryEl = document.getElementById("appointment-summary");
+
+  const dateField = document.getElementById("selectedDateField");
+  const timeField = document.getElementById("selectedTimeField");
+  const summaryField = document.getElementById("appointmentSummaryField");
+
+  if (!form || !btn || !dateInput || !timeSelect || !summaryEl) return;
+
+  function formatDate(yyyyMmDd) {
+    if (!yyyyMmDd) return "";
+    // Keep it simple and unambiguous: YYYY-MM-DD
+    return yyyyMmDd;
+  }
+
+  function updateSummaryAndHidden() {
+    const d = formatDate(dateInput.value);
+    const t = timeSelect.value;
+
+    if (d && t) {
+      const summary = `${d} at ${t}`;
+      summaryEl.innerText = summary;
+
+      if (dateField) dateField.value = d;
+      if (timeField) timeField.value = t;
+      if (summaryField) summaryField.value = summary;
+
+      btn.disabled = false;
+    } else {
+      summaryEl.innerText = "Please select a date and time above";
+      if (dateField) dateField.value = "";
+      if (timeField) timeField.value = "";
+      if (summaryField) summaryField.value = "";
+      btn.disabled = true;
+    }
+  }
+
+  dateInput.addEventListener("change", updateSummaryAndHidden);
+  timeSelect.addEventListener("change", updateSummaryAndHidden);
+
+  form.addEventListener("submit", function (e) {
+    updateSummaryAndHidden();
+    if (btn.disabled) {
+      e.preventDefault();
+      alert("Please select a date and time before booking.");
+    }
+  });
+
+  // Initial state
+  updateSummaryAndHidden();
+})();
+</script>
+    
 </div>
 
 <script>
