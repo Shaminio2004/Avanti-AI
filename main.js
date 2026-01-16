@@ -418,7 +418,8 @@ function initBookingSystem() {
     
     // Booking form submission
     const bookingForm = document.getElementById('booking-form');
-    if (bookingForm) {
+    const isFormSubmit = bookingForm?.action?.includes('formsubmit.co');
+    if (bookingForm && !isFormSubmit) {
         bookingForm.addEventListener('submit', handleBookingSubmission);
     }
     
@@ -537,6 +538,9 @@ function initBookingSystem() {
     }
     
     function handleBookingSubmission(event) {
+        if (event.target?.action?.includes('formsubmit.co')) {
+            return;
+        }
         event.preventDefault();
         
         const formData = new FormData(event.target);
@@ -592,6 +596,9 @@ function initFAQ() {
 function initCTAs() {
     // Book a Call buttons
     document.querySelectorAll('.btn-primary').forEach(btn => {
+        if (btn.closest('form')) {
+            return;
+        }
         if (btn.textContent.includes('Book') || btn.textContent.includes('Call')) {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();

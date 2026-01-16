@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Avanti AI</title>
+    <meta name="description" content="Thanks for booking a consultation with Avanti AI. We'll be in touch soon.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg-primary: #0A0A0B;
+            --bg-secondary: #1A1A1D;
+            --accent-primary: #00D4FF;
+            --accent-secondary: #8B5CF6;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A1A1AA;
+        }
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .bg-gradient-aurora {
+            background: linear-gradient(45deg,
+                rgba(0, 212, 255, 0.1) 0%,
+                rgba(139, 92, 246, 0.1) 50%,
+                rgba(0, 212, 255, 0.1) 100%);
+            background-size: 400% 400%;
+            animation: aurora 8s ease-in-out infinite;
+        }
+
+        @keyframes aurora {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 11, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img src="resources/company-logo.png" alt="Avanti AI" class="h-8 w-8">
+                    <span class="text-xl font-bold text-gradient">Avanti AI</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="services.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Services</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Pricing</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Contact</a>
+                </div>
+                <a href="contact.html" class="btn-primary px-6 py-2 rounded-lg font-medium text-white">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="min-h-screen pt-32 pb-20 bg-gradient-aurora">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <div class="bg-gray-900 border border-gray-800 rounded-2xl p-10 shadow-xl">
+                <div class="mx-auto mb-6 h-14 w-14 rounded-full bg-cyan-400/20 flex items-center justify-center">
+                    <svg class="h-7 w-7 text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h1 class="text-4xl font-bold mb-4">Thanks for booking with <span class="text-gradient">Avanti AI</span>!</h1>
+                <p class="text-lg text-gray-300 mb-8">
+                    We received your request and will reach out within one business day to confirm your consultation.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="index.html" class="btn-primary px-8 py-3 rounded-lg font-semibold text-white">Back to Home</a>
+                    <a href="contact.html" class="border border-cyan-400 text-cyan-300 px-8 py-3 rounded-lg font-semibold hover:bg-cyan-400 hover:text-black transition-all">Book Another Time</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
