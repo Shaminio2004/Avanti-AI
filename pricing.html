@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +30,7 @@
             --text-muted: #6B7280;
         }
         
-        * {
-            font-family: 'Inter', sans-serif;
-        }
+        * { font-family: 'Inter', sans-serif; }
         
         body {
             background-color: var(--bg-primary);
@@ -53,14 +52,9 @@
             50% { background-position: 100% 50%; }
         }
         
-        .glow-cyan {
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-        }
+        .glow-cyan { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
         
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
+        .card-hover { transition: all 0.3s ease; }
         .card-hover:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
@@ -126,10 +120,7 @@
             transform: scale(1.05) translateY(-8px);
         }
         
-        .slider-container {
-            position: relative;
-            margin: 20px 0;
-        }
+        .slider-container { position: relative; margin: 20px 0; }
         
         .slider {
             -webkit-appearance: none;
@@ -168,11 +159,7 @@
             height: 34px;
         }
         
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
         
         .toggle-slider {
             position: absolute;
@@ -198,13 +185,8 @@
             border-radius: 50%;
         }
         
-        input:checked + .toggle-slider {
-            background-color: var(--accent-primary);
-        }
-        
-        input:checked + .toggle-slider:before {
-            transform: translateX(26px);
-        }
+        input:checked + .toggle-slider { background-color: var(--accent-primary); }
+        input:checked + .toggle-slider:before { transform: translateX(26px); }
     </style>
 </head>
 <body>
@@ -268,13 +250,19 @@
     <section class="py-20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <!-- Starter Package -->
+                <!-- SIMPLE Package (formerly Starter) -->
                 <div class="pricing-card bg-gray-900 p-8 rounded-2xl reveal">
                     <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold mb-2 text-cyan-400">Starter</h3>
-                        <p class="text-gray-400 mb-6">Perfect for small businesses getting started with AI</p>
-                        <div class="text-5xl font-bold mb-2">$5K - $15K</div>
+                        <h3 class="text-2xl font-bold mb-2 text-cyan-400">Simple</h3>
+                        <p class="text-gray-400 mb-6">Best for small, clear-scope projects and quick wins</p>
+                        <div class="text-5xl font-bold mb-2">$500 - $1,500</div>
                         <p class="text-gray-400 text-sm">One-time project fee</p>
+
+                        <!-- Added per request -->
+                        <div class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800 border border-gray-700">
+                            <span class="text-gray-300 text-sm font-medium">Complexity Level:</span>
+                            <span class="text-cyan-400 text-sm font-semibold">Low</span>
+                        </div>
                     </div>
                     
                     <ul class="space-y-4 mb-8">
@@ -282,7 +270,7 @@
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>Basic AI agent or chatbot</span>
+                            <span>Single deliverable (agent, page, or automation)</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
@@ -294,7 +282,7 @@
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>Basic training data setup</span>
+                            <span>Basic setup + launch checklist</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
@@ -306,7 +294,7 @@
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>Documentation & training</span>
+                            <span>Documentation & handoff</span>
                         </li>
                     </ul>
                     
@@ -315,7 +303,7 @@
                     </button>
                 </div>
                 
-                <!-- Professional Package -->
+                <!-- PROFESSIONAL Package (kept name, updated range + complexity level) -->
                 <div class="pricing-card featured bg-gray-900 p-8 rounded-2xl relative reveal">
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
                         <span class="bg-gradient-to-r from-cyan-400 to-purple-400 text-black px-4 py-1 rounded-full text-sm font-semibold">
@@ -326,8 +314,14 @@
                     <div class="text-center mb-8">
                         <h3 class="text-2xl font-bold mb-2 text-purple-400">Professional</h3>
                         <p class="text-gray-400 mb-6">Comprehensive solutions for growing businesses</p>
-                        <div class="text-5xl font-bold mb-2">$20K - $50K</div>
+                        <div class="text-5xl font-bold mb-2">$2,000 - $4,500</div>
                         <p class="text-gray-400 text-sm">One-time project fee</p>
+
+                        <!-- Added per request -->
+                        <div class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800 border border-gray-700">
+                            <span class="text-gray-300 text-sm font-medium">Complexity Level:</span>
+                            <span class="text-purple-400 text-sm font-semibold">Medium</span>
+                        </div>
                     </div>
                     
                     <ul class="space-y-4 mb-8">
@@ -335,7 +329,7 @@
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>Advanced AI agent with NLP</span>
+                            <span>Advanced build (multi-step workflow or multi-page site)</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
@@ -347,13 +341,13 @@
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>Custom integrations</span>
+                            <span>Custom integrations (select systems)</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>Advanced analytics dashboard</span>
+                            <span>Analytics + quality checks</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
@@ -374,13 +368,19 @@
                     </button>
                 </div>
                 
-                <!-- Enterprise Package -->
+                <!-- PREMIUM Package (formerly Enterprise) -->
                 <div class="pricing-card bg-gray-900 p-8 rounded-2xl reveal">
                     <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold mb-2 text-cyan-400">Enterprise</h3>
-                        <p class="text-gray-400 mb-6">Custom solutions for large organizations</p>
-                        <div class="text-5xl font-bold mb-2">$60K+</div>
-                        <p class="text-gray-400 text-sm">Custom pricing</p>
+                        <h3 class="text-2xl font-bold mb-2 text-cyan-400">Premium</h3>
+                        <p class="text-gray-400 mb-6">High-complexity builds and end-to-end solutions</p>
+                        <div class="text-5xl font-bold mb-2">$5,000 - $10,000</div>
+                        <p class="text-gray-400 text-sm">One-time project fee</p>
+
+                        <!-- Added per request -->
+                        <div class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800 border border-gray-700">
+                            <span class="text-gray-300 text-sm font-medium">Complexity Level:</span>
+                            <span class="text-cyan-400 text-sm font-semibold">High</span>
+                        </div>
                     </div>
                     
                     <ul class="space-y-4 mb-8">
@@ -388,37 +388,37 @@
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>Multi-agent ecosystem</span>
+                            <span>Custom AI agent system or complex automation</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>Enterprise integrations</span>
+                            <span>Advanced integrations (APIs, webhooks, databases)</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>Custom ML model training</span>
+                            <span>Security, performance, and scale readiness</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>Dedicated support team</span>
+                            <span>Dedicated support window</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>SLA guarantees</span>
+                            <span>Milestone-based delivery</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>Ongoing optimization</span>
+                            <span>Ongoing optimization options</span>
                         </li>
                     </ul>
                     
@@ -456,7 +456,7 @@
                         <div>
                             <label class="block text-lg font-semibold mb-4">Complexity Level</label>
                             <div class="slider-container">
-                                <input type="range" min="1" max="5" value="3" class="slider" id="complexity-slider">
+                                <input type="range" min="1" max="5" value="1" class="slider" id="complexity-slider">
                                 <div class="flex justify-between text-sm text-gray-400 mt-2">
                                     <span>Simple</span>
                                     <span>Moderate</span>
@@ -464,6 +464,13 @@
                                     <span>Advanced</span>
                                     <span>Enterprise</span>
                                 </div>
+                                <!-- Optional: show which pricing tier the slider maps to -->
+                                <p class="mt-3 text-sm text-gray-400">
+                                    Pricing range updates based on complexity:
+                                    <span class="text-gray-200 font-medium">Simple ($500–$1,500)</span>,
+                                    <span class="text-gray-200 font-medium">Professional ($2,000–$4,500)</span>,
+                                    <span class="text-gray-200 font-medium">Premium ($5,000–$10,000)</span>
+                                </p>
                             </div>
                         </div>
                         
@@ -518,14 +525,14 @@
                         <h3 class="text-2xl font-bold mb-6 text-center">Estimated Cost</h3>
                         
                         <div class="text-center mb-8">
-                            <div class="text-5xl font-bold text-gradient mb-2" id="estimated-cost">$32,500</div>
+                            <div class="text-5xl font-bold text-gradient mb-2" id="estimated-cost">$1,000</div>
                             <p class="text-gray-400">One-time project fee</p>
                         </div>
                         
                         <div class="space-y-4 mb-8">
                             <div class="flex justify-between">
                                 <span class="text-gray-400">Base Cost</span>
-                                <span id="base-cost">$25,000</span>
+                                <span id="base-cost">$1,000</span>
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-400">Timeline Adjustment</span>
@@ -533,12 +540,12 @@
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-400">Additional Features</span>
-                                <span id="features-cost">$7,500</span>
+                                <span id="features-cost">$0</span>
                             </div>
                             <hr class="border-gray-700">
                             <div class="flex justify-between font-semibold text-lg">
                                 <span>Total Estimate</span>
-                                <span id="total-cost">$32,500</span>
+                                <span id="total-cost">$1,000</span>
                             </div>
                         </div>
                         
@@ -575,7 +582,7 @@
                         </svg>
                     </button>
                     <div class="faq-content hidden mt-4 text-gray-300">
-                        <p>We accept bank transfers, credit cards, and PayPal. For enterprise projects, we can also arrange payment plans and milestone-based billing.</p>
+                        <p>We accept bank transfers, credit cards, and PayPal. For larger projects, we can also arrange milestone-based billing.</p>
                     </div>
                 </div>
                 
@@ -583,11 +590,11 @@
                     <button class="w-full text-left flex justify-between items-center faq-toggle">
                         <h3 class="text-lg font-semibold">Do you offer refunds?</h3>
                         <svg class="w-5 h-5 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 0 010-1.414z" clip-rule="evenodd"></path>
                         </svg>
                     </button>
                     <div class="faq-content hidden mt-4 text-gray-300">
-                        <p>Yes, we offer a 30-day money-back guarantee if you're not satisfied with the initial project deliverables. After project completion, we provide ongoing support to ensure your satisfaction.</p>
+                        <p>Refunds depend on project stage and deliverables completed. We align scope in writing first to avoid surprises and ensure satisfaction.</p>
                     </div>
                 </div>
                 
@@ -595,11 +602,11 @@
                     <button class="w-full text-left flex justify-between items-center faq-toggle">
                         <h3 class="text-lg font-semibold">How long do projects typically take?</h3>
                         <svg class="w-5 h-5 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 0 01-1.414 0l-4-4a1 0 010-1.414z" clip-rule="evenodd"></path>
                         </svg>
                     </button>
                     <div class="faq-content hidden mt-4 text-gray-300">
-                        <p>Project timelines vary based on complexity. Simple projects take 2-4 weeks, moderate projects take 1-3 months, and complex enterprise solutions can take 3-6 months or more.</p>
+                        <p>Timelines vary by complexity. Simple projects can be completed in 2–4 weeks, Professional in 4–8 weeks, and Premium projects in 8+ weeks depending on integrations and scope.</p>
                     </div>
                 </div>
                 
@@ -607,11 +614,11 @@
                     <button class="w-full text-left flex justify-between items-center faq-toggle">
                         <h3 class="text-lg font-semibold">What happens after the project is completed?</h3>
                         <svg class="w-5 h-5 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 0 01-1.414 0l-4-4a1 0 010-1.414z" clip-rule="evenodd"></path>
                         </svg>
                     </button>
                     <div class="faq-content hidden mt-4 text-gray-300">
-                        <p>We provide ongoing support and maintenance packages. You can also opt for continuous optimization and feature enhancements as your business grows.</p>
+                        <p>We provide handoff documentation and optional support/optimization packages so your solution continues improving over time.</p>
                     </div>
                 </div>
             </div>
@@ -681,7 +688,106 @@
     <button class="fixed bottom-6 right-6 btn-primary px-6 py-3 rounded-full font-medium text-white glow-cyan z-40" id="floating-cta">
         Book a Call
     </button>
+
+    <!-- Inline pricing logic for the calculator (maps Complexity Level to your requested ranges) -->
+    <script>
+      (function () {
+        const complexitySlider = document.getElementById('complexity-slider');
+        const timelineSelect = document.getElementById('timeline-select');
+
+        const multiPlatform = document.getElementById('multi-platform');
+        const analytics = document.getElementById('analytics');
+        const integrations = document.getElementById('integrations');
+        const support = document.getElementById('support');
+
+        const estimatedCostEl = document.getElementById('estimated-cost');
+        const baseCostEl = document.getElementById('base-cost');
+        const timelineCostEl = document.getElementById('timeline-cost');
+        const featuresCostEl = document.getElementById('features-cost');
+        const totalCostEl = document.getElementById('total-cost');
+
+        // Complexity mapping:
+        // 1 = Simple ($500–$1,500)
+        // 2–3 = Professional ($2,000–$4,500)
+        // 4–5 = Premium ($5,000–$10,000)
+        const complexityRanges = {
+          1: { min: 500, max: 1500, label: 'Simple' },
+          2: { min: 2000, max: 4500, label: 'Professional' },
+          3: { min: 2000, max: 4500, label: 'Professional' },
+          4: { min: 5000, max: 10000, label: 'Premium' },
+          5: { min: 5000, max: 10000, label: 'Premium' }
+        };
+
+        function formatUSD(n) {
+          return n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+        }
+
+        // Use midpoint as the displayed estimate
+        function midpoint(min, max) {
+          return Math.round((min + max) / 2);
+        }
+
+        // Feature add-ons (kept modest, can be changed)
+        const featureAddons = {
+          multiPlatform: 500,
+          analytics: 400,
+          integrations: 600,
+          support: 700
+        };
+
+        function getFeatureCost() {
+          let cost = 0;
+          if (multiPlatform.checked) cost += featureAddons.multiPlatform;
+          if (analytics.checked) cost += featureAddons.analytics;
+          if (integrations.checked) cost += featureAddons.integrations;
+          if (support.checked) cost += featureAddons.support;
+          return cost;
+        }
+
+        function getTimelineMultiplier() {
+          const val = timelineSelect.value;
+          if (val === 'flexible') return 0.90;  // 10% discount
+          if (val === 'rush') return 1.50;      // 50% premium
+          return 1.00;                          // standard
+        }
+
+        function updateCalculator() {
+          const c = parseInt(complexitySlider.value, 10);
+          const range = complexityRanges[c];
+
+          const base = midpoint(range.min, range.max);
+          const features = getFeatureCost();
+          const subtotal = base + features;
+
+          const mult = getTimelineMultiplier();
+          const total = Math.round(subtotal * mult);
+
+          const timelineDelta = total - subtotal;
+
+          estimatedCostEl.textContent = formatUSD(total);
+          totalCostEl.textContent = formatUSD(total);
+
+          baseCostEl.textContent = formatUSD(base);
+
+          timelineCostEl.textContent = (timelineDelta >= 0 ? '+' : '-') + formatUSD(Math.abs(timelineDelta));
+          featuresCostEl.textContent = formatUSD(features);
+        }
+
+        // Initialize and bind events
+        ['input', 'change'].forEach(evt => {
+          complexitySlider.addEventListener(evt, updateCalculator);
+          timelineSelect.addEventListener(evt, updateCalculator);
+        });
+
+        [multiPlatform, analytics, integrations, support].forEach(el => {
+          el.addEventListener('change', updateCalculator);
+        });
+
+        updateCalculator();
+      })();
+    </script>
     
     <script src="main.js"></script>
 </body>
 </html>
+```
