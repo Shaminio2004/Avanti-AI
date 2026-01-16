@@ -395,133 +395,130 @@
         </div>
     </section>
     
-    <!-- Booking System -->
-    <section class="py-20 bg-gradient-aurora">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-12 reveal">
-                <h2 class="text-4xl font-bold mb-4">Schedule a Consultation</h2>
-                <p class="text-xl text-gray-300">
-                    Book a free 30-minute consultation to discuss your AI strategy
-                </p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Calendar -->
-                <div class="bg-gray-900 rounded-2xl p-8 border border-gray-800 reveal">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-2xl font-bold">Select Date</h3>
-                        <div class="flex items-center space-x-4">
-                            <button id="prev-month" class="p-2 hover:bg-gray-800 rounded-lg transition-colors">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-                            <span id="current-month" class="text-lg font-semibold min-w-[120px] text-center"></span>
-                            <button id="next-month" class="p-2 hover:bg-gray-800 rounded-lg transition-colors">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Calendar Header -->
-                    <div class="grid grid-cols-7 gap-1 mb-2">
-                        <div class="text-center text-sm text-gray-400 py-2">Sun</div>
-                        <div class="text-center text-sm text-gray-400 py-2">Mon</div>
-                        <div class="text-center text-sm text-gray-400 py-2">Tue</div>
-                        <div class="text-center text-sm text-gray-400 py-2">Wed</div>
-                        <div class="text-center text-sm text-gray-400 py-2">Thu</div>
-                        <div class="text-center text-sm text-gray-400 py-2">Fri</div>
-                        <div class="text-center text-sm text-gray-400 py-2">Sat</div>
-                    </div>
-                    
-                    <!-- Calendar Grid -->
-                    <div class="calendar-grid" id="calendar-grid">
-                        <!-- Calendar days will be populated by JavaScript -->
-                    </div>
-                </div>
-                
-                <!-- Time Slots & Form -->
-                <div class="space-y-8">
-                    <!-- Time Slots -->
-                    <div class="bg-gray-900 rounded-2xl p-8 border border-gray-800 reveal">
-                        <h3 class="text-2xl font-bold mb-6">Available Times</h3>
-                        <p class="text-gray-400 mb-6">Select your preferred time slot</p>
-                        
-                        <div class="grid grid-cols-2 gap-3" id="time-slots">
-                            <!-- Time slots will be populated by JavaScript -->
-                        </div>
-                    </div>
-                    
-                    <!-- Booking Form -->
-                    <div class="bg-gray-900 rounded-2xl p-8 border border-gray-800 reveal">
-                        <h3 class="text-2xl font-bold mb-6">Your Information</h3>
-                        
-                        <form id="booking-form" class="space-y-6">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">First Name *</label>
-                                    <input type="text" name="firstName" required class="form-input" placeholder="John">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">Last Name *</label>
-                                    <input type="text" name="lastName" required class="form-input" placeholder="Doe">
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Email Address *</label>
-                                <input type="email" name="email" required class="form-input" placeholder="john@company.com">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Phone Number</label>
-                                <input type="tel" name="phone" class="form-input" placeholder="(555) 123-4567">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Company Name</label>
-                                <input type="text" name="company" class="form-input" placeholder="Your Company">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Service Interest</label>
-                                <select name="service" class="form-input">
-                                    <option value="">Select a service</option>
-                                    <option value="agent">AI Agent Creation</option>
-                                    <option value="web">AI Web Design</option>
-                                    <option value="automation">Process Automation</option>
-                                    <option value="consultation">General Consultation</option>
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Meeting Preference</label>
-                                <select name="preference" class="form-input">
-                                    <option value="video">Video Call</option>
-                                    <option value="phone">Phone Call</option>
-                                    <option value="in-person">In-Person (Eugene Office)</option>
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Project Description</label>
-                                <textarea name="description" rows="4" class="form-input" placeholder="Tell us about your project goals and requirements..."></textarea>
-                            </div>
-                            
-                            <div class="bg-gray-800 rounded-lg p-4">
-                                <h4 class="font-semibold mb-2">Selected Appointment</h4>
-                                <p class="text-gray-300" id="appointment-summary">
-                                    Please select a date and time above
-                                </p>
-                            </div>
-                            
-                            <button type="submit" class="w-full btn-primary py-3 rounded-lg font-medium text-white" id="book-appointment-btn" disabled>
-                                Book Appointment
-                            </button>
-                        </form>
-                    </div>
+<!-- Booking Form -->
+<div class="bg-gray-900 rounded-2xl p-8 border border-gray-800 reveal">
+  <h3 class="text-2xl font-bold mb-6">Your Information</h3>
+
+  <form
+    id="booking-form"
+    action="https://formsubmit.co/paoloskid@gmail.com"
+    method="POST"
+    class="space-y-6"
+  >
+    <!-- FormSubmit settings -->
+    <input type="hidden" name="_subject" value="New booking request from Avanti AI" />
+    <input type="hidden" name="_captcha" value="true" />
+    <input type="hidden" name="_template" value="table" />
+    <input type="hidden" name="_next" value="https://www.avantiai.io/thanks.html" />
+
+    <!-- Appointment fields (filled before submit) -->
+    <input type="hidden" name="selectedDate" id="selectedDateField" value="" />
+    <input type="hidden" name="selectedTime" id="selectedTimeField" value="" />
+    <input type="hidden" name="appointmentSummary" id="appointmentSummaryField" value="" />
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <label class="block text-sm font-medium mb-2">First Name *</label>
+        <input type="text" name="firstName" required class="form-input" placeholder="John" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-2">Last Name *</label>
+        <input type="text" name="lastName" required class="form-input" placeholder="Doe" />
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-2">Email Address *</label>
+      <input type="email" name="email" required class="form-input" placeholder="john@company.com" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-2">Phone Number</label>
+      <input type="tel" name="phone" class="form-input" placeholder="(555) 123-4567" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-2">Company Name</label>
+      <input type="text" name="company" class="form-input" placeholder="Your Company" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-2">Service Interest</label>
+      <select name="service" class="form-input">
+        <option value="">Select a service</option>
+        <option value="AI Agent Creation">AI Agent Creation</option>
+        <option value="AI Web Design">AI Web Design</option>
+        <option value="Process Automation">Process Automation</option>
+        <option value="General Consultation">General Consultation</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-2">Meeting Preference</label>
+      <select name="preference" class="form-input">
+        <option value="Video Call">Video Call</option>
+        <option value="Phone Call">Phone Call</option>
+        <option value="In-Person (Eugene Office)">In-Person (Eugene Office)</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-2">Project Description</label>
+      <textarea
+        name="description"
+        rows="4"
+        class="form-input"
+        placeholder="Tell us about your project goals and requirements..."
+      ></textarea>
+    </div>
+
+    <div class="bg-gray-800 rounded-lg p-4">
+      <h4 class="font-semibold mb-2">Selected Appointment</h4>
+      <p class="text-gray-300" id="appointment-summary">
+        Please select a date and time above
+      </p>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full btn-primary py-3 rounded-lg font-medium text-white"
+      id="book-appointment-btn"
+      disabled
+    >
+      Book Appointment
+    </button>
+  </form>
+</div>
+
+<script>
+  // Ensure the booking email includes the selected slot, even if your main JS doesn't set hidden fields yet.
+  (function () {
+    const form = document.getElementById("booking-form");
+    if (!form) return;
+
+    form.addEventListener("submit", function () {
+      const summaryEl = document.getElementById("appointment-summary");
+      const summary = summaryEl ? summaryEl.innerText.trim() : "";
+
+      const dateField = document.getElementById("selectedDateField");
+      const timeField = document.getElementById("selectedTimeField");
+      const summaryField = document.getElementById("appointmentSummaryField");
+
+      if (summaryField) summaryField.value = summary;
+
+      // Best-effort parse (works if your summary looks like: "Jan 20, 2026 at 2:30 PM")
+      // If not parseable, the full summary is still sent via appointmentSummaryField.
+      if (summary && summary.toLowerCase().includes("please select") === false) {
+        const parts = summary.split(" at ");
+        if (parts.length === 2) {
+          if (dateField) dateField.value = parts[0].trim();
+          if (timeField) timeField.value = parts[1].trim();
+        }
+      }
+    });
+  })();
+</script>
+  
                 </div>
             </div>
         </div>
