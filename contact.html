@@ -521,25 +521,44 @@
 
 <script>
 (function () {
+  const form = document.getElementById("booking-form-fs");
+  const btn = document.getElementById("book-appointment-btn-fs");
   const dateInput = document.getElementById("preferredDate");
   const timeSelect = document.getElementById("preferredTime");
   const summary = document.getElementById("appointment-summary");
-  const btn = document.getElementById("book-appointment-btn");
 
-  function update() {
+  if (!form || !btn || !dateInput || !timeSelect || !summary) return;
+
+  function updateSummary() {
     if (dateInput.value && timeSelect.value) {
       summary.textContent = dateInput.value + " at " + timeSelect.value;
-      btn.disabled = false;
     } else {
       summary.textContent = "Please select a date and time above";
-      btn.disabled = true;
     }
   }
 
-  dateInput.addEventListener("change", update);
-  timeSelect.addEventListener("change", update);
+  function updateButton() {
+    // Enables button only when ALL required fields in the form are valid
+    btn.disabled = !form.checkValidity();
+  }
+
+  // Update on any change in the form
+  form.addEventListener("input", function () {
+    updateSummary();
+    updateButton();
+  });
+
+  form.addEventListener("change", function () {
+    updateSummary();
+    updateButton();
+  });
+
+  // Initial state
+  updateSummary();
+  updateButton();
 })();
 </script>
+
 
     
 </div>
