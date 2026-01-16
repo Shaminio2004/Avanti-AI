@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Avanti AI</title>
+    <meta name="description" content="Get in touch with Avanti AI. Schedule a consultation, request a quote, or learn more about our AI services.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --bg-primary: #0A0A0B;
+            --bg-secondary: #1A1A1D;
+            --accent-primary: #00D4FF;
+            --accent-secondary: #8B5CF6;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A1A1AA;
+            --text-muted: #6B7280;
+        }
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+        
+        .bg-gradient-aurora {
+            background: linear-gradient(45deg, 
+                rgba(0, 212, 255, 0.1) 0%, 
+                rgba(139, 92, 246, 0.1) 50%, 
+                rgba(0, 212, 255, 0.1) 100%);
+            background-size: 400% 400%;
+            animation: aurora 8s ease-in-out infinite;
+        }
+        
+        @keyframes aurora {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 11, 0.8);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
+        }
+        
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            background-color: #374151;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .calendar-day {
+            background-color: #1F2937;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .calendar-day:hover {
+            background-color: #374151;
+        }
+        
+        .calendar-day.available {
+            background-color: rgba(0, 212, 255, 0.1);
+            color: var(--accent-primary);
+        }
+        
+        .calendar-day.available:hover {
+            background-color: rgba(0, 212, 255, 0.2);
+        }
+        
+        .calendar-day.selected {
+            background-color: var(--accent-primary);
+            color: #000;
+        }
+        
+        .calendar-day.disabled {
+            background-color: #111827;
+            color: #6B7280;
+            cursor: not-allowed;
+        }
+        
+        .time-slot {
+            padding: 12px 16px;
+            border: 2px solid #374151;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        
+        .time-slot:hover {
+            border-color: var(--accent-primary);
+            background-color: rgba(0, 212, 255, 0.1);
+        }
+        
+        .time-slot.selected {
+            border-color: var(--accent-primary);
+            background-color: var(--accent-primary);
+            color: #000;
+        }
+        
+        .time-slot.unavailable {
+            border-color: #374151;
+            background-color: #111827;
+            color: #6B7280;
+            cursor: not-allowed;
+        }
+        
+        .form-input {
+            background-color: #1F2937;
+            border: 2px solid #374151;
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: white;
+            width: 100%;
+            transition: border-color 0.2s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+        
+        .form-input::placeholder {
+            color: #6B7280;
+        }
+        
+        .contact-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-open {
+            background-color: #10B981;
+        }
+        
+        .status-closed {
+            background-color: #EF4444;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Particles -->
+    <div id="particles-canvas"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img src="resources/company-logo.png" alt="Avanti AI" class="h-8 w-8">
+                    <span class="text-xl font-bold text-gradient">Avanti AI</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="services.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Services</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Pricing</a>
+                    <a href="contact.html" class="text-white hover:text-cyan-400 transition-colors font-medium">Contact</a>
+                </div>
+                
+                <button class="btn-primary px-6 py-2 rounded-lg font-medium text-white">
+                    Book a Call
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-6 py-4 space-y-4 bg-gray-900">
+                <a href="index.html" class="block text-gray-300">Home</a>
+                <a href="services.html" class="block text-gray-300">Services</a>
+                <a href="pricing.html" class="block text-gray-300">Pricing</a>
+                <a href="contact.html" class="block text-white font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+    <section class="pt-24 pb-12 bg-gradient-aurora">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold mb-6 reveal">
+                Let's <span class="text-gradient">Connect</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto reveal">
+                Ready to transform your business with AI? Schedule a consultation, request a quote, 
+                or get in touch with our team to discuss your project.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Contact Information -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <!-- Phone Contact -->
+                <div class="contact-card p-8 rounded-2xl reveal">
+                    <div class="w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Call Us</h3>
+                    <p class="text-gray-400 text-center mb-4">Speak directly with our team</p>
+                    <div class="text-center">
+                        <a href="tel:458-319-7061" class="text-cyan-400 font-semibold text-lg hover:underline">
+                            458-319-7061
+                        </a>
+                        <div class="mt-2">
+                            <span class="status-indicator status-open"></span>
+                            <span class="text-sm text-gray-400">Available Mon-Fri, 9AM-5PM PST</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Email Contact -->
+                <div class="contact-card p-8 rounded-2xl reveal">
+                    <div class="w-16 h-16 bg-purple-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Email Us</h3>
+                    <p class="text-gray-400 text-center mb-4">Send us your requirements</p>
+                    <div class="text-center">
+                        <a href="mailto:paoloskid@gmail.com" class="text-purple-400 font-semibold text-lg hover:underline">
+                            paoloskid@gmail.com
+                        </a>
+                        <p class="text-sm text-gray-400 mt-2">Response within 24 hours</p>
+                    </div>
+                </div>
+                
+                <!-- Office Location -->
+                <div class="contact-card p-8 rounded-2xl reveal">
+                    <div class="w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Visit Us</h3>
+                    <p class="text-gray-400 text-center mb-4">Our office in Eugene, Oregon</p>
+                    <div class="text-center">
+                        <address class="text-cyan-400 font-semibold not-italic">
+                            255 Madison St<br>
+                            Eugene, OR 97402
+                        </address>
+                        <p class="text-sm text-gray-400 mt-2">By appointment only</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Booking System -->
+    <section class="py-20 bg-gradient-aurora">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl font-bold mb-4">Schedule a Consultation</h2>
+                <p class="text-xl text-gray-300">
+                    Book a free 30-minute consultation to discuss your AI strategy
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Calendar -->
+                <div class="bg-gray-900 rounded-2xl p-8 border border-gray-800 reveal">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-2xl font-bold">Select Date</h3>
+                        <div class="flex items-center space-x-4">
+                            <button id="prev-month" class="p-2 hover:bg-gray-800 rounded-lg transition-colors">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <span id="current-month" class="text-lg font-semibold min-w-[120px] text-center"></span>
+                            <button id="next-month" class="p-2 hover:bg-gray-800 rounded-lg transition-colors">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Calendar Header -->
+                    <div class="grid grid-cols-7 gap-1 mb-2">
+                        <div class="text-center text-sm text-gray-400 py-2">Sun</div>
+                        <div class="text-center text-sm text-gray-400 py-2">Mon</div>
+                        <div class="text-center text-sm text-gray-400 py-2">Tue</div>
+                        <div class="text-center text-sm text-gray-400 py-2">Wed</div>
+                        <div class="text-center text-sm text-gray-400 py-2">Thu</div>
+                        <div class="text-center text-sm text-gray-400 py-2">Fri</div>
+                        <div class="text-center text-sm text-gray-400 py-2">Sat</div>
+                    </div>
+                    
+                    <!-- Calendar Grid -->
+                    <div class="calendar-grid" id="calendar-grid">
+                        <!-- Calendar days will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Time Slots & Form -->
+                <div class="space-y-8">
+                    <!-- Time Slots -->
+                    <div class="bg-gray-900 rounded-2xl p-8 border border-gray-800 reveal">
+                        <h3 class="text-2xl font-bold mb-6">Available Times</h3>
+                        <p class="text-gray-400 mb-6">Select your preferred time slot</p>
+                        
+                        <div class="grid grid-cols-2 gap-3" id="time-slots">
+                            <!-- Time slots will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Booking Form -->
+                    <div class="bg-gray-900 rounded-2xl p-8 border border-gray-800 reveal">
+                        <h3 class="text-2xl font-bold mb-6">Your Information</h3>
+                        
+                        <form id="booking-form" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">First Name *</label>
+                                    <input type="text" name="firstName" required class="form-input" placeholder="John">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Last Name *</label>
+                                    <input type="text" name="lastName" required class="form-input" placeholder="Doe">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Email Address *</label>
+                                <input type="email" name="email" required class="form-input" placeholder="john@company.com">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Phone Number</label>
+                                <input type="tel" name="phone" class="form-input" placeholder="(555) 123-4567">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Company Name</label>
+                                <input type="text" name="company" class="form-input" placeholder="Your Company">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Service Interest</label>
+                                <select name="service" class="form-input">
+                                    <option value="">Select a service</option>
+                                    <option value="agent">AI Agent Creation</option>
+                                    <option value="web">AI Web Design</option>
+                                    <option value="automation">Process Automation</option>
+                                    <option value="consultation">General Consultation</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Meeting Preference</label>
+                                <select name="preference" class="form-input">
+                                    <option value="video">Video Call</option>
+                                    <option value="phone">Phone Call</option>
+                                    <option value="in-person">In-Person (Eugene Office)</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Project Description</label>
+                                <textarea name="description" rows="4" class="form-input" placeholder="Tell us about your project goals and requirements..."></textarea>
+                            </div>
+                            
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <h4 class="font-semibold mb-2">Selected Appointment</h4>
+                                <p class="text-gray-300" id="appointment-summary">
+                                    Please select a date and time above
+                                </p>
+                            </div>
+                            
+                            <button type="submit" class="w-full btn-primary py-3 rounded-lg font-medium text-white" id="book-appointment-btn" disabled>
+                                Book Appointment
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quick Actions -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">Quick Actions</h2>
+                <p class="text-xl text-gray-400">
+                    Get immediate assistance with these options
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Instant Call -->
+                <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 text-center reveal">
+                    <div class="w-16 h-16 bg-green-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Need Immediate Help?</h3>
+                    <p class="text-gray-400 mb-6">
+                        Call us now for urgent inquiries or same-day consultations
+                    </p>
+                    <a href="tel:458-319-7061" class="btn-primary px-8 py-3 rounded-lg font-medium text-white inline-block">
+                        Call Now
+                    </a>
+                </div>
+                
+                <!-- Email Quote -->
+                <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 text-center reveal">
+                    <div class="w-16 h-16 bg-blue-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Request a Quote</h3>
+                    <p class="text-gray-400 mb-6">
+                        Send us your requirements for a detailed project proposal
+                    </p>
+                    <a href="mailto:paoloskid@gmail.com?subject=Project Quote Request" class="border border-blue-400 text-blue-400 px-8 py-3 rounded-lg font-medium hover:bg-blue-400 hover:text-black transition-all inline-block">
+                        Email Quote Request
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Business Hours -->
+    <section class="py-20 bg-gradient-aurora">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <h2 class="text-4xl font-bold mb-8">Business Hours</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+                    <h3 class="text-xl font-bold mb-4 text-cyan-400">Regular Hours</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <p>Monday - Friday: 9:00 AM - 5:00 PM PST</p>
+                        <p>Saturday: 10:00 AM - 2:00 PM PST</p>
+                        <p>Sunday: Closed</p>
+                    </div>
+                    <div class="mt-4">
+                        <span class="status-indicator status-open"></span>
+                        <span class="text-green-400 font-semibold">Currently Open</span>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+                    <h3 class="text-xl font-bold mb-4 text-purple-400">Support Hours</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM PST</p>
+                        <p>Emergency Support: 24/7 (Enterprise)</p>
+                        <p>Email Response: Within 24 hours</p>
+                    </div>
+                    <div class="mt-4">
+                        <span class="status-indicator status-open"></span>
+                        <span class="text-green-400 font-semibold">Support Available</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-gray-400">
+                Response times: Phone calls within 2 hours, emails within 24 hours, 
+                project quotes within 48 hours
+            </p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="resources/company-logo.png" alt="Avanti AI" class="h-8 w-8">
+                        <span class="text-xl font-bold text-gradient">Avanti AI</span>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Transforming businesses with intelligent AI solutions. Based in Eugene, Oregon, serving clients worldwide.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="services.html" class="hover:text-white transition-colors">Agent Creation</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Web Design</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Automation</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Paolos Kid</li>
+                        <li>458-319-7061</li>
+                        <li>paoloskid@gmail.com</li>
+                        <li>255 Madison St<br>Eugene, OR 97402</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 Avanti AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Floating CTA -->
+    <button class="fixed bottom-6 right-6 btn-primary px-6 py-3 rounded-full font-medium text-white glow-cyan z-40" id="floating-cta">
+        Book a Call
+    </button>
+    
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-gray-900 rounded-2xl p-8 max-w-md mx-4 border border-gray-800">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Appointment Confirmed!</h3>
+                <p class="text-gray-300 mb-6">
+                    Thank you for booking with Avanti AI. You'll receive a confirmation email shortly with meeting details.
+                </p>
+                <button id="close-modal" class="btn-primary px-6 py-3 rounded-lg font-medium text-white">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

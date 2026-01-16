@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Avanti AI</title>
+    <meta name="description" content="Comprehensive AI services including agent creation, web design, and automation solutions for modern businesses.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --bg-primary: #0A0A0B;
+            --bg-secondary: #1A1A1D;
+            --accent-primary: #00D4FF;
+            --accent-secondary: #8B5CF6;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A1A1AA;
+            --text-muted: #6B7280;
+        }
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+        
+        .bg-gradient-aurora {
+            background: linear-gradient(45deg, 
+                rgba(0, 212, 255, 0.1) 0%, 
+                rgba(139, 92, 246, 0.1) 50%, 
+                rgba(0, 212, 255, 0.1) 100%);
+            background-size: 400% 400%;
+            animation: aurora 8s ease-in-out infinite;
+        }
+        
+        @keyframes aurora {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 11, 0.8);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
+        }
+        
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .configurator-step {
+            display: none;
+        }
+        
+        .configurator-step.active {
+            display: block;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: rgba(0, 212, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+        
+        .feature-checkbox {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-primary);
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .feature-checkbox:checked {
+            background: var(--accent-primary);
+        }
+        
+        .feature-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Particles -->
+    <div id="particles-canvas"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img src="resources/company-logo.png" alt="Avanti AI" class="h-8 w-8">
+                    <span class="text-xl font-bold text-gradient">Avanti AI</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="services.html" class="text-white hover:text-cyan-400 transition-colors font-medium">Services</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Pricing</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Contact</a>
+                </div>
+                
+                <button class="btn-primary px-6 py-2 rounded-lg font-medium text-white">
+                    Book a Call
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-6 py-4 space-y-4 bg-gray-900">
+                <a href="index.html" class="block text-gray-300">Home</a>
+                <a href="services.html" class="block text-white font-medium">Services</a>
+                <a href="pricing.html" class="block text-gray-300">Pricing</a>
+                <a href="contact.html" class="block text-gray-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+    <section class="pt-24 pb-12 bg-gradient-aurora">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold mb-6 reveal">
+                Our <span class="text-gradient">Services</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto reveal">
+                Comprehensive AI solutions designed to transform your business operations and drive measurable growth. 
+                From concept to deployment, we handle the complexity so you can focus on results.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Service Details -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Agent Creation -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20 reveal">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6 text-cyan-400">Agent Creation</h2>
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                        Deploy intelligent AI agents that work 24/7 to handle customer service, qualify leads, 
+                        and automate repetitive tasks. Our custom-built agents integrate seamlessly with your 
+                        existing systems and learn from your business data.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                            <h4 class="font-semibold text-cyan-400 mb-2">Chatbots</h4>
+                            <p class="text-gray-400 text-sm">Conversational AI for customer support and engagement</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                            <h4 class="font-semibold text-cyan-400 mb-2">Virtual Assistants</h4>
+                            <p class="text-gray-400 text-sm">Advanced AI for complex task automation</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                            <h4 class="font-semibold text-cyan-400 mb-2">Sales Bots</h4>
+                            <p class="text-gray-400 text-sm">Lead qualification and sales automation</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                            <h4 class="font-semibold text-cyan-400 mb-2">Support Agents</h4>
+                            <p class="text-gray-400 text-sm">24/7 customer service and ticket resolution</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-semibold">Key Features:</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                <span>Natural language processing and understanding</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                <span>Multi-platform integration (web, mobile, social)</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                <span>Custom training on your business data</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                <span>Real-time analytics and performance monitoring</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="reveal">
+                    <img src="resources/service-agent.jpg" alt="AI Agent Creation" class="w-full h-96 object-cover rounded-2xl glow-cyan">
+                </div>
+            </div>
+            
+            <!-- Web Design -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20 reveal">
+                <div class="order-2 lg:order-1">
+                    <img src="resources/service-web.jpg" alt="AI Web Design" class="w-full h-96 object-cover rounded-2xl glow-cyan">
+                </div>
+                
+                <div class="order-1 lg:order-2">
+                    <h2 class="text-4xl font-bold mb-6 text-purple-400">Web Design</h2>
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                        Create intelligent websites that adapt to user behavior, optimize conversions automatically, 
+                        and deliver personalized experiences. Our AI-powered approach ensures your site evolves 
+                        with your business and audience.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                            <h4 class="font-semibold text-purple-400 mb-2">AI UX Optimization</h4>
+                            <p class="text-gray-400 text-sm">Automatic user experience improvements</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                            <h4 class="font-semibold text-purple-400 mb-2">Personalized Content</h4>
+                            <p class="text-gray-400 text-sm">Dynamic content based on user behavior</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                            <h4 class="font-semibold text-purple-400 mb-2">Performance AI</h4>
+                            <p class="text-gray-400 text-sm">Intelligent speed and SEO optimization</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                            <h4 class="font-semibold text-purple-400 mb-2">Responsive Design</h4>
+                            <p class="text-gray-400 text-sm">Perfect experience on all devices</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-semibold">Key Features:</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
+                                <span>AI-driven A/B testing and optimization</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
+                                <span>Behavioral targeting and personalization</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
+                                <span>Intelligent content recommendations</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
+                                <span>Advanced analytics and insights</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Automation -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20 reveal">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6 text-cyan-400">Automation</h2>
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                        Streamline your operations with intelligent workflow automation that eliminates manual tasks, 
+                        reduces errors, and frees up your team to focus on high-value work. Our solutions integrate 
+                        with your existing tools and scale with your business.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                            <h4 class="font-semibold text-cyan-400 mb-2">Workflow Automation</h4>
+                            <p class="text-gray-400 text-sm">End-to-end process optimization</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                            <h4 class="font-semibold text-cyan-400 mb-2">Data Integration</h4>
+                            <p class="text-gray-400 text-sm">Connect systems and automate data flow</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                            <h4 class="font-semibold text-cyan-400 mb-2">Business Intelligence</h4>
+                            <p class="text-gray-400 text-sm">Automated reporting and insights</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                            <h4 class="font-semibold text-cyan-400 mb-2">Process Optimization</h4>
+                            <p class="text-gray-400 text-sm">AI-powered efficiency improvements</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-semibold">Key Features:</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                <span>Visual workflow builder with AI suggestions</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                <span>Integration with 1000+ popular tools</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                <span>Real-time monitoring and alerts</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                <span>Scalable architecture for growing businesses</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="reveal">
+                    <img src="resources/service-auto.jpg" alt="AI Automation" class="w-full h-96 object-cover rounded-2xl glow-cyan">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Service Configurator -->
+    <section class="py-20 bg-gradient-aurora">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl font-bold mb-4">Build Your Custom Solution</h2>
+                <p class="text-xl text-gray-300">
+                    Configure your perfect AI solution with our interactive service builder
+                </p>
+            </div>
+            
+            <div class="bg-gray-900 rounded-2xl p-8 border border-gray-800 reveal">
+                <!-- Progress Bar -->
+                <div class="mb-8">
+                    <div class="flex justify-between text-sm text-gray-400 mb-2">
+                        <span>Step <span id="current-step">1</span> of 4</span>
+                        <span id="progress-text">Service Selection</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 25%"></div>
+                    </div>
+                </div>
+                
+                <!-- Step 1: Service Selection -->
+                <div class="configurator-step active" id="step-1">
+                    <h3 class="text-2xl font-bold mb-6">What service do you need?</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="service" value="agent" class="sr-only">
+                            <div class="service-option p-6 border-2 border-gray-700 rounded-xl hover:border-cyan-400 transition-all">
+                                <div class="text-cyan-400 text-3xl mb-4">🤖</div>
+                                <h4 class="font-semibold mb-2">AI Agent Creation</h4>
+                                <p class="text-gray-400 text-sm">Custom chatbots and virtual assistants</p>
+                            </div>
+                        </label>
+                        
+                        <label class="cursor-pointer">
+                            <input type="radio" name="service" value="web" class="sr-only">
+                            <div class="service-option p-6 border-2 border-gray-700 rounded-xl hover:border-purple-400 transition-all">
+                                <div class="text-purple-400 text-3xl mb-4">🌐</div>
+                                <h4 class="font-semibold mb-2">AI Web Design</h4>
+                                <p class="text-gray-400 text-sm">Intelligent websites and UX optimization</p>
+                            </div>
+                        </label>
+                        
+                        <label class="cursor-pointer">
+                            <input type="radio" name="service" value="automation" class="sr-only">
+                            <div class="service-option p-6 border-2 border-gray-700 rounded-xl hover:border-cyan-400 transition-all">
+                                <div class="text-cyan-400 text-3xl mb-4">⚡</div>
+                                <h4 class="font-semibold mb-2">Process Automation</h4>
+                                <p class="text-gray-400 text-sm">Workflow optimization and integration</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Complexity -->
+                <div class="configurator-step" id="step-2">
+                    <h3 class="text-2xl font-bold mb-6">What's your project complexity?</h3>
+                    <div class="space-y-4">
+                        <label class="flex items-center p-4 border-2 border-gray-700 rounded-xl hover:border-cyan-400 transition-all cursor-pointer">
+                            <input type="radio" name="complexity" value="simple" class="sr-only">
+                            <div class="flex-1">
+                                <h4 class="font-semibold mb-1">Simple</h4>
+                                <p class="text-gray-400 text-sm">Basic implementation, single platform</p>
+                            </div>
+                            <div class="text-cyan-400 font-semibold">$5K - $15K</div>
+                        </label>
+                        
+                        <label class="flex items-center p-4 border-2 border-gray-700 rounded-xl hover:border-cyan-400 transition-all cursor-pointer">
+                            <input type="radio" name="complexity" value="moderate" class="sr-only">
+                            <div class="flex-1">
+                                <h4 class="font-semibold mb-1">Moderate</h4>
+                                <p class="text-gray-400 text-sm">Advanced features, multi-platform</p>
+                            </div>
+                            <div class="text-cyan-400 font-semibold">$20K - $50K</div>
+                        </label>
+                        
+                        <label class="flex items-center p-4 border-2 border-gray-700 rounded-xl hover:border-cyan-400 transition-all cursor-pointer">
+                            <input type="radio" name="complexity" value="complex" class="sr-only">
+                            <div class="flex-1">
+                                <h4 class="font-semibold mb-1">Complex</h4>
+                                <p class="text-gray-400 text-sm">Enterprise solution, custom integrations</p>
+                            </div>
+                            <div class="text-cyan-400 font-semibold">$60K+</div>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Features -->
+                <div class="configurator-step" id="step-3">
+                    <h3 class="text-2xl font-bold mb-6">Select additional features</h3>
+                    <div class="grid md:grid-cols-2 gap-4" id="feature-options">
+                        <!-- Features will be populated based on service selection -->
+                    </div>
+                </div>
+                
+                <!-- Step 4: Timeline -->
+                <div class="configurator-step" id="step-4">
+                    <h3 class="text-2xl font-bold mb-6">When do you need this completed?</h3>
+                    <div class="space-y-4">
+                        <label class="flex items-center p-4 border-2 border-gray-700 rounded-xl hover:border-cyan-400 transition-all cursor-pointer">
+                            <input type="radio" name="timeline" value="rush" class="sr-only">
+                            <div class="flex-1">
+                                <h4 class="font-semibold mb-1">Rush (2-4 weeks)</h4>
+                                <p class="text-gray-400 text-sm">Priority delivery, additional resources</p>
+                            </div>
+                            <div class="text-orange-400 font-semibold">+50% cost</div>
+                        </label>
+                        
+                        <label class="flex items-center p-4 border-2 border-gray-700 rounded-xl hover:border-cyan-400 transition-all cursor-pointer">
+                            <input type="radio" name="timeline" value="standard" class="sr-only">
+                            <div class="flex-1">
+                                <h4 class="font-semibold mb-1">Standard (1-3 months)</h4>
+                                <p class="text-gray-400 text-sm">Normal development timeline</p>
+                            </div>
+                            <div class="text-green-400 font-semibold">Standard rate</div>
+                        </label>
+                        
+                        <label class="flex items-center p-4 border-2 border-gray-700 rounded-xl hover:border-cyan-400 transition-all cursor-pointer">
+                            <input type="radio" name="timeline" value="flexible" class="sr-only">
+                            <div class="flex-1">
+                                <h4 class="font-semibold mb-1">Flexible (3+ months)</h4>
+                                <p class="text-gray-400 text-sm">Extended timeline, cost optimization</p>
+                            </div>
+                            <div class="text-green-400 font-semibold">-10% discount</div>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between mt-8">
+                    <button id="prev-btn" class="px-6 py-3 border border-gray-600 text-gray-300 rounded-lg hover:border-gray-400 hover:text-white transition-all hidden">
+                        Previous
+                    </button>
+                    <div class="flex-1"></div>
+                    <button id="next-btn" class="btn-primary px-6 py-3 rounded-lg font-medium text-white">
+                        Next Step
+                    </button>
+                    <button id="get-quote-btn" class="btn-primary px-6 py-3 rounded-lg font-medium text-white hidden">
+                        Get Detailed Quote
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Process Timeline -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">How We Work</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Our proven process ensures successful delivery from initial consultation to ongoing support
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center reveal">
+                    <div class="w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-black">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Discovery</h3>
+                    <p class="text-gray-400">We analyze your business needs and identify automation opportunities</p>
+                </div>
+                
+                <div class="text-center reveal">
+                    <div class="w-16 h-16 bg-purple-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-black">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Strategy</h3>
+                    <p class="text-gray-400">Custom solution design with clear timeline and deliverables</p>
+                </div>
+                
+                <div class="text-center reveal">
+                    <div class="w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-black">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Development</h3>
+                    <p class="text-gray-400">Agile implementation with regular updates and testing</p>
+                </div>
+                
+                <div class="text-center reveal">
+                    <div class="w-16 h-16 bg-purple-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-black">4</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Support</h3>
+                    <p class="text-gray-400">Ongoing optimization, monitoring, and technical support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-aurora">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <h2 class="text-4xl font-bold mb-6">Ready to Get Started?</h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Schedule a free consultation to discuss your project requirements and get a detailed proposal.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="btn-primary px-8 py-4 rounded-lg font-semibold text-lg">
+                    Book a Free Consultation
+                </button>
+                <button class="border border-gray-600 text-gray-300 px-8 py-4 rounded-lg font-semibold text-lg hover:border-gray-400 hover:text-white transition-all">
+                    Get Custom Quote
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="resources/company-logo.png" alt="Avanti AI" class="h-8 w-8">
+                        <span class="text-xl font-bold text-gradient">Avanti AI</span>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Transforming businesses with intelligent AI solutions. Based in Eugene, Oregon, serving clients worldwide.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="services.html" class="hover:text-white transition-colors">Agent Creation</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Web Design</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Automation</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Paolos Kid</li>
+                        <li>458-319-7061</li>
+                        <li>paoloskid@gmail.com</li>
+                        <li>255 Madison St<br>Eugene, OR 97402</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 Avanti AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Floating CTA -->
+    <button class="fixed bottom-6 right-6 btn-primary px-6 py-3 rounded-full font-medium text-white glow-cyan z-40" id="floating-cta">
+        Book a Call
+    </button>
+    
+    <script src="main.js"></script>
+</body>
+</html>
