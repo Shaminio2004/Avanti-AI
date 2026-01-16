@@ -395,156 +395,152 @@
         </div>
     </section>
     
-<!-- Booking Form -->
-<div class="bg-gray-900 rounded-2xl p-8 border border-gray-800 reveal">
-  <h3 class="text-2xl font-bold mb-6">Your Information</h3>
+<!-- Booking System -->
+<section class="py-20 bg-gradient-aurora">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="bg-gray-900 rounded-2xl p-8 border border-gray-800 reveal">
 
-  <form
-    id="booking-form"
-    action="https://formsubmit.co/paoloskid@gmail.com"
-    method="POST"
-    class="space-y-6"
-  >
-    <!-- FormSubmit settings -->
-    <input type="hidden" name="_subject" value="New booking request from Avanti AI" />
-    <input type="hidden" name="_captcha" value="true" />
-    <input type="hidden" name="_template" value="table" />
-    <input type="hidden" name="_next" value="https://www.avantiai.io/thanks.html" />
-
-    <!-- Appointment fields (filled before submit) -->
-    <input type="hidden" name="selectedDate" id="selectedDateField" value="" />
-    <input type="hidden" name="selectedTime" id="selectedTimeField" value="" />
-    <input type="hidden" name="appointmentSummary" id="appointmentSummaryField" value="" />
-
-    <div class="grid md:grid-cols-2 gap-6">
-      <div>
-        <label class="block text-sm font-medium mb-2">First Name *</label>
-        <input type="text" name="firstName" required class="form-input" placeholder="John" />
-      </div>
-      <div>
-        <label class="block text-sm font-medium mb-2">Last Name *</label>
-        <input type="text" name="lastName" required class="form-input" placeholder="Doe" />
-      </div>
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium mb-2">Email Address *</label>
-      <input type="email" name="email" required class="form-input" placeholder="john@company.com" />
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium mb-2">Phone Number</label>
-      <input type="tel" name="phone" class="form-input" placeholder="(555) 123-4567" />
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium mb-2">Company Name</label>
-      <input type="text" name="company" class="form-input" placeholder="Your Company" />
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium mb-2">Service Interest</label>
-      <select name="service" class="form-input">
-        <option value="">Select a service</option>
-        <option value="AI Agent Creation">AI Agent Creation</option>
-        <option value="AI Web Design">AI Web Design</option>
-        <option value="Process Automation">Process Automation</option>
-        <option value="General Consultation">General Consultation</option>
-      </select>
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium mb-2">Meeting Preference</label>
-      <select name="preference" class="form-input">
-        <option value="Video Call">Video Call</option>
-        <option value="Phone Call">Phone Call</option>
-        <option value="In-Person (Eugene Office)">In-Person (Eugene Office)</option>
-      </select>
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium mb-2">Project Description</label>
-      <textarea
-        name="description"
-        rows="4"
-        class="form-input"
-        placeholder="Tell us about your project goals and requirements..."
-      ></textarea>
-    </div>
-
-    <div class="bg-gray-800 rounded-lg p-4">
-      <h4 class="font-semibold mb-2">Selected Appointment</h4>
-      <p class="text-gray-300" id="appointment-summary">
-        Please select a date and time above
+      <h2 class="text-3xl font-bold mb-2 text-center">Schedule a Consultation</h2>
+      <p class="text-gray-400 mb-8 text-center">
+        Book a free 30-minute consultation to discuss your AI strategy
       </p>
+
+      <form
+        id="booking-form"
+        action="https://formsubmit.co/paoloskid@gmail.com"
+        method="POST"
+        class="space-y-6"
+      >
+        <!-- FormSubmit settings -->
+        <input type="hidden" name="_subject" value="New Booking – Avanti AI" />
+        <input type="hidden" name="_captcha" value="true" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="https://www.avantiai.io/thanks.html" />
+
+        <!-- Name -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium mb-2">First Name *</label>
+            <input type="text" name="firstName" required class="form-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Last Name *</label>
+            <input type="text" name="lastName" required class="form-input" />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block text-sm font-medium mb-2">Email *</label>
+          <input type="email" name="email" required class="form-input" />
+        </div>
+
+        <!-- Date & Time -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium mb-2">Preferred Date *</label>
+            <input
+              type="date"
+              id="preferredDate"
+              name="Preferred Date"
+              required
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-2">Preferred Time *</label>
+            <select
+              id="preferredTime"
+              name="Preferred Time"
+              required
+              class="form-input"
+            >
+              <option value="">Select a time</option>
+              <option>9:00 AM</option>
+              <option>9:30 AM</option>
+              <option>10:00 AM</option>
+              <option>10:30 AM</option>
+              <option>11:00 AM</option>
+              <option>11:30 AM</option>
+              <option>1:00 PM</option>
+              <option>1:30 PM</option>
+              <option>2:00 PM</option>
+              <option>2:30 PM</option>
+              <option>3:00 PM</option>
+              <option>3:30 PM</option>
+              <option>4:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Service -->
+        <div>
+          <label class="block text-sm font-medium mb-2">Service Interest</label>
+          <select name="Service Interest" class="form-input">
+            <option value="">Select a service</option>
+            <option>AI Agent Creation</option>
+            <option>Web Design</option>
+            <option>Automation</option>
+            <option>General Consultation</option>
+          </select>
+        </div>
+
+        <!-- Description -->
+        <div>
+          <label class="block text-sm font-medium mb-2">Project Description</label>
+          <textarea
+            name="Project Description"
+            rows="4"
+            class="form-input"
+            placeholder="Briefly describe what you want to build"
+          ></textarea>
+        </div>
+
+        <!-- Appointment Summary -->
+        <div class="bg-gray-800 rounded-lg p-4">
+          <h4 class="font-semibold mb-1">Selected Appointment</h4>
+          <p id="appointment-summary" class="text-gray-300">
+            Please select a date and time above
+          </p>
+        </div>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          id="book-appointment-btn"
+          disabled
+          class="w-full btn-primary py-3 rounded-lg font-medium text-white"
+        >
+          Book Appointment
+        </button>
+      </form>
     </div>
+  </div>
+</section>
 
-   <button type="submit"
-  class="w-full btn-primary py-3 rounded-lg font-medium text-white"
-  id="book-appointment-btn">
-
-      Book Appointment
-    </button>
-  </form>
-
-    <script>
+<script>
 (function () {
-  const form = document.getElementById("booking-form");
-  const btn = document.getElementById("book-appointment-btn");
-
   const dateInput = document.getElementById("preferredDate");
   const timeSelect = document.getElementById("preferredTime");
-  const summaryEl = document.getElementById("appointment-summary");
+  const summary = document.getElementById("appointment-summary");
+  const btn = document.getElementById("book-appointment-btn");
 
-  const dateField = document.getElementById("selectedDateField");
-  const timeField = document.getElementById("selectedTimeField");
-  const summaryField = document.getElementById("appointmentSummaryField");
-
-  if (!form || !btn || !dateInput || !timeSelect || !summaryEl) return;
-
-  function formatDate(yyyyMmDd) {
-    if (!yyyyMmDd) return "";
-    // Keep it simple and unambiguous: YYYY-MM-DD
-    return yyyyMmDd;
-  }
-
-  function updateSummaryAndHidden() {
-    const d = formatDate(dateInput.value);
-    const t = timeSelect.value;
-
-    if (d && t) {
-      const summary = `${d} at ${t}`;
-      summaryEl.innerText = summary;
-
-      if (dateField) dateField.value = d;
-      if (timeField) timeField.value = t;
-      if (summaryField) summaryField.value = summary;
-
+  function update() {
+    if (dateInput.value && timeSelect.value) {
+      summary.textContent = dateInput.value + " at " + timeSelect.value;
       btn.disabled = false;
     } else {
-      summaryEl.innerText = "Please select a date and time above";
-      if (dateField) dateField.value = "";
-      if (timeField) timeField.value = "";
-      if (summaryField) summaryField.value = "";
+      summary.textContent = "Please select a date and time above";
       btn.disabled = true;
     }
   }
 
-  dateInput.addEventListener("change", updateSummaryAndHidden);
-  timeSelect.addEventListener("change", updateSummaryAndHidden);
-
-  form.addEventListener("submit", function (e) {
-    updateSummaryAndHidden();
-    if (btn.disabled) {
-      e.preventDefault();
-      alert("Please select a date and time before booking.");
-    }
-  });
-
-  // Initial state
-  updateSummaryAndHidden();
+  dateInput.addEventListener("change", update);
+  timeSelect.addEventListener("change", update);
 })();
 </script>
+
     
 </div>
 
