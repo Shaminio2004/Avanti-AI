@@ -592,6 +592,9 @@ function initFAQ() {
 function initCTAs() {
     // Book a Call buttons
     document.querySelectorAll('.btn-primary').forEach(btn => {
+        if (btn.closest('form')) {
+            return;
+        }
         if (btn.textContent.includes('Book') || btn.textContent.includes('Call')) {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
