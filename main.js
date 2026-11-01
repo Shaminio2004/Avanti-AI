@@ -620,7 +620,7 @@ function initCTAs() {
     
     // Floating CTA
     const floatingCTA = document.getElementById('floating-cta');
-    if (floatingCTA) {
+    if (floatingCTA && !(floatingCTA.getAttribute('href') || '').startsWith('tel:')) {
         floatingCTA.addEventListener('click', () => {
             window.location.href = 'contact.html';
         });
