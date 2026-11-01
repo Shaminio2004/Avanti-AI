@@ -599,6 +599,10 @@ function initCTAs() {
         if (btn.closest('form')) {
             return;
         }
+        // Let phone links dial the Avanti AI call agent
+        if ((btn.getAttribute('href') || '').startsWith('tel:')) {
+            return;
+        }
         if (btn.textContent.includes('Book') || btn.textContent.includes('Call')) {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
